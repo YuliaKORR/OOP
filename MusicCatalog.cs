@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Dynamic;
 using System.Reflection;
 using System.Runtime.InteropServices.Marshalling;
@@ -77,10 +77,10 @@ namespace firstlab{
 
             string value = "", znachenie = "", value_z = "";
             while (value != "end"){
-                System.Console.Write("Что хотите найти? ");
+                System.Console.Write("Что хотите найти (author, music, zhanr, album, collection)? ");
                 value = Console.ReadLine();
                 if (value == "author"){
-                    System.Console.Write("По какому параметру будем искать? ");
+                    System.Console.Write("По какому параметру будем искать (name, music, zhanr, album)? ");
                     znachenie = Console.ReadLine();
                     switch(znachenie){
                         case "name":
@@ -93,7 +93,7 @@ namespace firstlab{
                         }
                         break;
                     
-                        case "albom":
+                        case "album":
                             System.Console.Write("Введите значение этого параметра: ");
                             value_z = Console.ReadLine();
                             for(int i = 0; i < 5; i++){
@@ -103,7 +103,7 @@ namespace firstlab{
                             }
                             break;
                     
-                        case "pesnya":
+                        case "music":
                             System.Console.Write("Введите значение этого параметра: ");
                             value_z = Console.ReadLine();
                             for(int i = 0; i < 5; i++){
@@ -124,8 +124,8 @@ namespace firstlab{
                             break;
                         }
                     }
-                    else if(value == "albom"){
-                        System.Console.Write("По какому параметру будем искать? ");
+                    else if(value == "album"){
+                        System.Console.Write("По какому параметру будем искать (name, author, music, zhanr)? ");
                         znachenie = Console.ReadLine();
                         switch(znachenie){
                             case "name":
@@ -146,7 +146,7 @@ namespace firstlab{
                                     }
                                 }
                                 break;
-                            case "pesnya":
+                            case "music":
                                 System.Console.Write("Введите значение этого параметра: ");
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
@@ -167,8 +167,51 @@ namespace firstlab{
                             }
                         break;
                     }
-                    else if(value == "pesnya"){
-                        System.Console.Write("По какому параметру будем искать? ");
+                    else if(value == "zhanr"){
+                        System.Console.Write("По какому параметру будем искать (name, author, music, album)? ");
+                        znachenie = Console.ReadLine();
+                        switch(znachenie){
+                            case "name":
+                                System.Console.Write("Введите значение этого параметра: ");
+                                value_z = Console.ReadLine();
+                                for(int i = 0; i < 5; i++){
+                                    if(authors[i].album.pesnya.zhanr == value_z){
+                                        System.Console.WriteLine("Музыкант: "+authors[i].name+"; песня: "+authors[i].album.pesnya.name+"; альбом: "+authors[i].album.name);
+                                    }
+                                }
+                                break;
+                            case "author":
+                                System.Console.Write("Введите значение этого параметра: ");
+                                value_z = Console.ReadLine();
+                                for(int i = 0; i < 5; i++){
+                                    if(authors[i].name == value_z){
+                                        System.Console.WriteLine("Жанр: "+authors[i].album.pesnya.zhanr);
+                                    }
+                                }
+                                break;
+                            case "music":
+                                System.Console.Write("Введите значение этого параметра: ");
+                                value_z = Console.ReadLine();
+                                for(int i = 0; i < 5; i++){
+                                    if(authors[i].album.pesnya.name == value_z){
+                                        System.Console.WriteLine("Жанр: "+authors[i].album.pesnya.zhanr);
+                                    }
+                                }
+                                break;
+                            case "album":
+                                System.Console.Write("Введите значение этого параметра: ");
+                                value_z = Console.ReadLine();
+                                for(int i = 0; i < 5; i++){
+                                    if(authors[i].album.name == value_z){
+                                        System.Console.WriteLine("Жанр: "+authors[i].album.pesnya.zhanr);
+                                    }
+                                }
+                                break;
+                            }
+                        break;
+                    }
+                    else if(value == "music"){
+                        System.Console.Write("По какому параметру будем искать (name, author, album, zhanr)? ");
                         znachenie = Console.ReadLine();
                         switch(znachenie){
                             case "name":
@@ -185,16 +228,16 @@ namespace firstlab{
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
                                     if(authors[i].name == value_z){
-                                        System.Console.WriteLine("Альбом: "+authors[i].album.pesnya.name);
+                                        System.Console.WriteLine("Песня: "+authors[i].album.pesnya.name);
                                     }
                                 }
                                 break;
-                            case "albom":
+                            case "album":
                                 System.Console.Write("Введите значение этого параметра: ");
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
                                     if(authors[i].album.name == value_z){
-                                        System.Console.WriteLine("Альбом: "+authors[i].album.pesnya.name);
+                                        System.Console.WriteLine("Песня: "+authors[i].album.pesnya.name);
                                     }
                                 }
                                 break;
@@ -211,7 +254,7 @@ namespace firstlab{
                         break;
                     }
                     else if(value == "sbornik"){
-                        System.Console.Write("По какому параметру будем искать? ");
+                        System.Console.Write("По какому параметру будем искать (name, author, album, zhanr)? ");
                         znachenie = Console.ReadLine();
                         switch(znachenie){
                             case "name":
