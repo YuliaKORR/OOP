@@ -5,46 +5,46 @@ using System.Runtime.InteropServices.Marshalling;
 
 namespace firstlab{
     
-    class Pesnya{
+    class Music{
         public string name;
         public string zhanr;
         public bool mne_nravitsya;
 
-        public void setPesnya(string name_pesnya, string zhanr_pesni, bool nravitsya){
-            this.name = name_pesnya;
-            this.zhanr = zhanr_pesni;
+        public void setmusic(string name_music, string zhanr_music, bool nravitsya){
+            this.name = name_music;
+            this.zhanr = zhanr_music;
             this.mne_nravitsya = nravitsya;    
         }        
     }
 
     class Album{
         public string name;
-        public Pesnya pesnya = new Pesnya();
-        public void setAlbum(string name_album, string pesn_album, string zhanr_pesni, bool nravitsya){
+        public Music music = new Music();
+        public void setAlbum(string name_album, string music_album, string zhanr_music, bool nravitsya){
             name = name_album;
-            pesnya.setPesnya(pesn_album, zhanr_pesni, nravitsya); 
+            music.setmusic(music_album, zhanr_music, nravitsya); 
         }
     }
     class Author{
         public string name;
         public Album album = new Album();
-        public void SetAuthor(string name_author, string name_album, string pesn_album, string zhanr_pesni, bool nravitsya){
+        public void SetAuthor(string name_author, string name_album, string music_album, string zhanr_music, bool nravitsya){
             name = name_author;
-            album.setAlbum(name_album, pesn_album, zhanr_pesni, nravitsya);
+            album.setAlbum(name_album, music_album, zhanr_music, nravitsya);
         }
     }
 
     class Sbornik{
         public string name;
         public string author_name;
-        public string pesn;
+        public string music;
         public string zhanr;
 
         public void SetSbornic(string name_sbornic, Author author){
             name = name_sbornic;
             author_name = author.name;
-            pesn = author.album.pesnya.name;
-            zhanr = author.album.pesnya.zhanr;
+            music = author.album.music.name;
+            zhanr = author.album.music.zhanr;
         }
     }
 
@@ -65,7 +65,7 @@ namespace firstlab{
             
             Sbornik[] sborniks = new Sbornik[5];
             for(int i = 0; i < 5; i++){
-                if(authors[i].album.pesnya.mne_nravitsya == true){
+                if(authors[i].album.music.mne_nravitsya == true){
                     sborniks[i] = new Sbornik();
                     sborniks[i].SetSbornic("likely", authors[i]);
                 }
@@ -88,7 +88,7 @@ namespace firstlab{
                         value_z = Console.ReadLine();
                         for(int i = 0; i < 5; i++){
                             if(authors[i].name == value_z){
-                                System.Console.WriteLine("Альбом: "+authors[i].album.name+"; песня: "+authors[i].album.pesnya.name+"; жанр: "+authors[i].album.pesnya.zhanr);
+                                System.Console.WriteLine("Альбом: "+authors[i].album.name+"; песня: "+authors[i].album.music.name+"; жанр: "+authors[i].album.music.zhanr);
                             }
                         }
                         break;
@@ -107,7 +107,7 @@ namespace firstlab{
                             System.Console.Write("Введите значение этого параметра: ");
                             value_z = Console.ReadLine();
                             for(int i = 0; i < 5; i++){
-                                if(authors[i].album.pesnya.name == value_z){
+                                if(authors[i].album.music.name == value_z){
                                     System.Console.WriteLine("Музыкант: "+authors[i].name);
                                 }
                             }
@@ -117,7 +117,7 @@ namespace firstlab{
                             System.Console.Write("Введите значение этого параметра: ");
                             value_z = Console.ReadLine();
                             for(int i = 0; i < 5; i++){
-                                if(authors[i].album.pesnya.zhanr == value_z){
+                                if(authors[i].album.music.zhanr == value_z){
                                     System.Console.WriteLine("Музыкант: "+authors[i].name);
                                 }
                             }
@@ -133,7 +133,7 @@ namespace firstlab{
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
                                     if(authors[i].album.name == value_z){
-                                        System.Console.WriteLine("Музыкант: "+authors[i].name+"; песня: "+authors[i].album.pesnya.name+"; жанр: "+authors[i].album.pesnya.zhanr);
+                                        System.Console.WriteLine("Музыкант: "+authors[i].name+"; песня: "+authors[i].album.music.name+"; жанр: "+authors[i].album.music.zhanr);
                                     }
                                 }
                                 break;
@@ -150,7 +150,7 @@ namespace firstlab{
                                 System.Console.Write("Введите значение этого параметра: ");
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
-                                    if(authors[i].album.pesnya.name == value_z){
+                                    if(authors[i].album.music.name == value_z){
                                         System.Console.WriteLine("Альбом: "+authors[i].album.name);
                                     }
                                 }
@@ -159,7 +159,7 @@ namespace firstlab{
                                 System.Console.Write("Введите значение этого параметра: ");
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
-                                    if(authors[i].album.pesnya.zhanr == value_z){
+                                    if(authors[i].album.music.zhanr == value_z){
                                         System.Console.WriteLine("Альбом: "+authors[i].album.name);
                                     }
                                 }
@@ -175,8 +175,8 @@ namespace firstlab{
                                 System.Console.Write("Введите значение этого параметра: ");
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
-                                    if(authors[i].album.pesnya.zhanr == value_z){
-                                        System.Console.WriteLine("Музыкант: "+authors[i].name+"; песня: "+authors[i].album.pesnya.name+"; альбом: "+authors[i].album.name);
+                                    if(authors[i].album.music.zhanr == value_z){
+                                        System.Console.WriteLine("Музыкант: "+authors[i].name+"; песня: "+authors[i].album.music.name+"; альбом: "+authors[i].album.name);
                                     }
                                 }
                                 break;
@@ -185,7 +185,7 @@ namespace firstlab{
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
                                     if(authors[i].name == value_z){
-                                        System.Console.WriteLine("Жанр: "+authors[i].album.pesnya.zhanr);
+                                        System.Console.WriteLine("Жанр: "+authors[i].album.music.zhanr);
                                     }
                                 }
                                 break;
@@ -193,8 +193,8 @@ namespace firstlab{
                                 System.Console.Write("Введите значение этого параметра: ");
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
-                                    if(authors[i].album.pesnya.name == value_z){
-                                        System.Console.WriteLine("Жанр: "+authors[i].album.pesnya.zhanr);
+                                    if(authors[i].album.music.name == value_z){
+                                        System.Console.WriteLine("Жанр: "+authors[i].album.music.zhanr);
                                     }
                                 }
                                 break;
@@ -203,7 +203,7 @@ namespace firstlab{
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
                                     if(authors[i].album.name == value_z){
-                                        System.Console.WriteLine("Жанр: "+authors[i].album.pesnya.zhanr);
+                                        System.Console.WriteLine("Жанр: "+authors[i].album.music.zhanr);
                                     }
                                 }
                                 break;
@@ -218,8 +218,8 @@ namespace firstlab{
                                 System.Console.Write("Введите значение этого параметра: ");
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
-                                    if(authors[i].album.pesnya.name == value_z){
-                                        System.Console.WriteLine("Музыкант: "+authors[i].name+"; альбом: "+authors[i].album.name+"; жанр: "+authors[i].album.pesnya.zhanr);
+                                    if(authors[i].album.music.name == value_z){
+                                        System.Console.WriteLine("Музыкант: "+authors[i].name+"; альбом: "+authors[i].album.name+"; жанр: "+authors[i].album.music.zhanr);
                                     }
                                 }
                                 break;
@@ -228,7 +228,7 @@ namespace firstlab{
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
                                     if(authors[i].name == value_z){
-                                        System.Console.WriteLine("Песня: "+authors[i].album.pesnya.name);
+                                        System.Console.WriteLine("Песня: "+authors[i].album.music.name);
                                     }
                                 }
                                 break;
@@ -237,7 +237,7 @@ namespace firstlab{
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
                                     if(authors[i].album.name == value_z){
-                                        System.Console.WriteLine("Песня: "+authors[i].album.pesnya.name);
+                                        System.Console.WriteLine("Песня: "+authors[i].album.music.name);
                                     }
                                 }
                                 break;
@@ -245,8 +245,8 @@ namespace firstlab{
                                 System.Console.Write("Введите значение этого параметра: ");
                                 value_z = Console.ReadLine();
                                 for(int i = 0; i < 5; i++){
-                                    if(authors[i].album.pesnya.zhanr == value_z){
-                                        System.Console.WriteLine("Песня: "+authors[i].album.pesnya.name);
+                                    if(authors[i].album.music.zhanr == value_z){
+                                        System.Console.WriteLine("Песня: "+authors[i].album.music.name);
                                     }
                                 }
                                 break;
