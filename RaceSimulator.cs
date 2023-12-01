@@ -45,7 +45,7 @@ namespace SecondLab
 
                 if (distance == "end")
                     break;
-                
+
                 //Подготовка участников гонки
                 Vehicle[] vehicles = new Vehicle[8];
                 vehicles[0] = new AirVehicle();
@@ -104,7 +104,7 @@ namespace SecondLab
                         }
                         else
                         {
-                            if (iracer <= 0 | iracer > 8)
+                            if (iracer <= 0 || iracer > 8)
                             {
                                 Console.WriteLine("Введено некорректное значение");
                                 iscorrect = false;
@@ -124,53 +124,32 @@ namespace SecondLab
                             }
 
                             //Заполнение участников гонки                    
-                            if (race_type == "2" || race_type == "3")
+                            switch (iracer)
                             {
-                                switch (iracer)
-                                {
-                                    case 1:
-                                        vehicles_to_race.Add(vehicles[0]);
-                                        break;
-                                    case 2:
-                                        vehicles_to_race.Add(vehicles[1]);
-                                        break;
-                                    case 3:
-                                        vehicles_to_race.Add(vehicles[2]);
-                                        break;
-                                    case 4:
-                                        vehicles_to_race.Add(vehicles[3]);
-                                        break;
-                                    case 5:
-                                        vehicles_to_race.Add(vehicles[4]);
-                                        break;
-                                    case 6:
-                                        vehicles_to_race.Add(vehicles[5]);
-                                        break;
-                                    case 7:
-                                        vehicles_to_race.Add(vehicles[6]);
-                                        break;
-                                    case 8:
-                                        vehicles_to_race.Add(vehicles[7]);
-                                        break;
-                                }
-                            }
-                            else
-                            {
-                                switch (iracer)
-                                {
-                                    case 1:
-                                        vehicles_to_race.Add(vehicles[4]);
-                                        break;
-                                    case 2:
-                                        vehicles_to_race.Add(vehicles[5]);
-                                        break;
-                                    case 3:
-                                        vehicles_to_race.Add(vehicles[6]);
-                                        break;
-                                    case 4:
-                                        vehicles_to_race.Add(vehicles[7]);
-                                        break;
-                                }
+                                case 1:
+                                    vehicles_to_race.Add(vehicles[0]);
+                                    break;
+                                case 2:
+                                    vehicles_to_race.Add(vehicles[1]);
+                                    break;
+                                case 3:
+                                    vehicles_to_race.Add(vehicles[2]);
+                                    break;
+                                case 4:
+                                    vehicles_to_race.Add(vehicles[3]);
+                                    break;
+                                case 5:
+                                    vehicles_to_race.Add(vehicles[4]);
+                                    break;
+                                case 6:
+                                    vehicles_to_race.Add(vehicles[5]);
+                                    break;
+                                case 7:
+                                    vehicles_to_race.Add(vehicles[6]);
+                                    break;
+                                case 8:
+                                    vehicles_to_race.Add(vehicles[7]);
+                                    break;
                             }
                             count++;
                         }
@@ -189,15 +168,15 @@ namespace SecondLab
                 {
                     if (vehicles_to_race[i].type == "ground")
                     {
-                        time_without_rest = idistance / vehicles_to_race[i].speed;
-                        count_of_rest = time_without_rest / ((GroundVehicle)vehicles_to_race[i]).time_before_rest;
+                        time_without_rest = (double)idistance / vehicles_to_race[i].speed;
+                        count_of_rest = Math.Round(time_without_rest / ((GroundVehicle)vehicles_to_race[i]).time_before_rest, 0);
                         time = Math.Round(time_without_rest + Math.Floor(count_of_rest) * ((GroundVehicle)vehicles_to_race[i]).time_for_rest, 2);
                     }
                     else
                     {
-                        double a = Math.Pow(vehicles_to_race[i].speed,2);
-                        double b = 2*idistance*((AirVehicle)vehicles_to_race[i]).acceleration_coefficient;
-                        time = Math.Round((Math.Sqrt(a+b) - vehicles_to_race[i].speed)/((AirVehicle)vehicles_to_race[i]).acceleration_coefficient,2);
+                        double a = Math.Pow(vehicles_to_race[i].speed, 2);
+                        double b = 2 * idistance * ((AirVehicle)vehicles_to_race[i]).acceleration_coefficient;
+                        time = Math.Round((Math.Sqrt(a + b) - vehicles_to_race[i].speed) / ((AirVehicle)vehicles_to_race[i]).acceleration_coefficient, 2);
                     }
                     vehicles_to_race[i].time = time;
                     if (the_best_time == -1 || time < the_best_time)
