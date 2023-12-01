@@ -2,21 +2,24 @@ using System;
 
 namespace SecondLab{
 
-    class Vehicle{
+    abstract class Vehicle{
         public string name;
         public string type;
         public int speed;
         public double time;
+        public void SetVehicle(string name, int speed, string type){
+            this.name = name;
+            this.speed = speed;
+            this.type = type;
+        }
     }
 
     class AirVehicle : Vehicle{
-        public int acceleration_coefficient;
-        public void SetVehicle(string name, int speed, int acceleration_coefficient){
-            base.name = name;
-            base.type = "air";
-            base.speed = speed;
-            this.name = name;
-            this.acceleration_coefficient = acceleration_coefficient;
+        public double acceleration_coefficient;
+        public Func<double, double> AccelerationFormula { get; set; }
+        public void SetVehicle(string name, int speed, Func<double, double> AccelerationFormula, int distance){
+            base.SetVehicle(name, speed, "air");
+            this.acceleration_coefficient = AccelerationFormula(distance);
         }
     }
 
@@ -24,9 +27,7 @@ namespace SecondLab{
         public int time_before_rest;
         public int time_for_rest;
         public void SetVehicle(string name, int speed, int time_before_rest, int time_for_rest){
-            base.name = name;
-            base.type = "ground";
-            base.speed = speed;
+            base.SetVehicle(name, speed, "ground");
             this.time_before_rest = time_before_rest;
             this.time_for_rest = time_for_rest;
         }
